@@ -1,10 +1,14 @@
 import mysql from 'mysql2';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const db = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',      
-    password: 'Cello_12345',      
-    database: 'db_jurnal_alam'
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',      
+    password: process.env.DB_PASSWORD || '',      
+    database: process.env.DB_NAME || 'db_jurnal_alam',
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306
 });
 
 // Tambahkan : any pada parameter err
