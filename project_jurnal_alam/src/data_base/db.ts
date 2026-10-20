@@ -1,4 +1,4 @@
-import mysql from 'mysql2';
+import mysql, { type Pool } from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -6,7 +6,7 @@ dotenv.config();
 // Default kredensial Aiven (di-decode agar aman dari push scanner GitHub)
 const defaultDbPassword = Buffer.from('QVZOU19BbTVJQWZkMm0tLXpOZXNLRHlq', 'base64').toString('utf-8');
 
-const db = mysql.createPool({
+const db: Pool = mysql.createPool({
     host: process.env.DB_HOST || 'mysql-2c651a69-humairahadelia05-603b.i.aivencloud.com',
     user: process.env.DB_USER || 'avnadmin',      
     password: process.env.DB_PASSWORD || defaultDbPassword,      

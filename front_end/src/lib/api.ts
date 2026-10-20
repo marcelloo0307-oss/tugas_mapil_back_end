@@ -1,6 +1,14 @@
 import { Journal, AuthResponse } from '../types/journal';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+const getApiBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
+    return 'https://tugas-mapil-back-end.vercel.app/api';
+  }
+  return 'http://localhost:3000/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 // Sample fallback journals showcasing Indonesian nature exploration
 export const FALLBACK_JOURNALS: Journal[] = [

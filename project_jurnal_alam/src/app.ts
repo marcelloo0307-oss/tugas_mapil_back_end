@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import 'dotenv/config'; // Pastikan ini ada di atas
-import db from './data_base/db.ts'; 
+import db from './data_base/db.js'; 
 import authRoutes from './routes/authRoutes.js';
 import journalRoutes from './routes/journalRoutes.js'; // Tambahkan ini
 
