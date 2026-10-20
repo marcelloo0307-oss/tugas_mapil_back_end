@@ -11,7 +11,7 @@ const db = mysql.createPool({
     user: process.env.DB_USER || 'avnadmin',      
     password: process.env.DB_PASSWORD || defaultDbPassword,      
     database: process.env.DB_NAME || 'db_jurnal_alam',
-    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 11441,
     ssl: {
         rejectUnauthorized: false
     },
