@@ -23,3 +23,5 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(port, () => {
     console.log(`Server Jurnal Rimba menyala di http://localhost:${port}`);
 });
+
+export default app;

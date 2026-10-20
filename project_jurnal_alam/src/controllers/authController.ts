@@ -25,7 +25,13 @@ export const register = (req: Request, res: Response): any => {
 
         const query = 'INSERT INTO users (username, password, role) VALUES (?, ?, ?)';
         db.query(query, [username, hash, userRole], (error, results) => {
-            if (error) return res.status(400).json({ error: 'Username mungkin sudah terpakai' });
+            if (error) {
+                console.error('Database register error:', error);
+                if ((error as any).code === 'ER_DUP_ENTRY') {
+                    return res.status(400).json({ error: 'Username sudah terpakai' });
+                }
+                return res.status(500).json({ error: 'Terjadi kesalahan database: ' + (error.message || 'Unknown error') });
+            }
             res.status(201).json({ 
                 message: userRole === 'admin' 
                     ? 'Akun Administrator terverifikasi berhasil dibuat!' 
